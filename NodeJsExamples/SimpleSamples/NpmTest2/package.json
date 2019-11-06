@@ -1,0 +1,14 @@
+{
+  "name": "npmtest2",
+  "version": "1.0.0",
+  "description": "My second npm project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "J M Moss",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}
