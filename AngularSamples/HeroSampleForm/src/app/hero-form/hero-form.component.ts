@@ -9,10 +9,14 @@ import { Hero } from '../hero';
 export class HeroFormComponent implements OnInit {
 
   powers = ['Really Smart', 'Super Flexible', 'Super Hot', 'Weather Changer']
-  model = new Hero(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
+  model = new Hero(18, 'Dr IQ', this.powers[2], 'Chuck Overstreet');
   submitted = false;
 
-  onSubmit() { this.submitted = true; }
+  onSubmit() { 
+    console.log("SUBMITTED:- Want Some? Get Some!")
+    this.submitted = true; 
+    // do some stuff with form
+  }
 
   constructor() { }
 
