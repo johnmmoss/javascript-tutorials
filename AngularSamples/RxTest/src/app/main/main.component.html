@@ -1,17 +1,23 @@
+<div class="container">
+    <h1>Log Sample</h1>
+    <hr />
 
-<h1>Log Sample</h1>
-<hr />
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Logged</th>
-        <th>Message</th>
-        <th></th>
-    </tr>
-    <tr *ngFor="let logRow of logRows">
-        <td>{{ logRow.id }}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Logged</th>
+            <th>Caller</th>
+            <th>Message</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let logRow of logs">
+            <td>{{ logRow.id }}</td>
+            <td>{{ logRow.logged }}</td>
+            <td>{{ logRow.caller }}</td>
+            <td>{{ logRow.message }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

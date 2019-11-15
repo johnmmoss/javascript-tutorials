@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { ILogRow } from './log-row';
+import { tap, map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-main',
@@ -9,20 +11,19 @@ import { ILogRow } from './log-row';
 })
 export class MainComponent implements OnInit {
 
-  logs:ILogRow;
+  logs: ILogRow[];
 
   constructor(
-    private httpClient:HttpClient
+    private httpClient: HttpClient
   ) { }
 
   ngOnInit() {
-    this.httpClient.get<ILogRow>('api/log.json').subscribe(
-      response => {
-        this.logs = response
-      },
-      error => {
-        console.log(error);
-      }
-    )
+
+    this.httpClient.get<ILogRow[]>('api/log.json')
+      .pipe(
+        tap( x => console.log(x)),
+        //tap( x => x.message = x.message.substr(0, 10)),
+        map( x => this.logs = x))
+      .subscribe();
   }
 }
