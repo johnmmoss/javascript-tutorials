@@ -1,6 +1,10 @@
 
 let scores = [25, 5, 8, 44, 17];
 
+//Arrays, are just a kind of object specialized for storing sequences of things.
+
+Marijn Haverbeke. Eloquent JavaScript (Kindle Location 1603). Kindle Edition. 
+
 let colors = ["red", "yellow", "pink", "blue"];
 
 let confused = ["one", 2, "THREE", 4, 5, "six"];
