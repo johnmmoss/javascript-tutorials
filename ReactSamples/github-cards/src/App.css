@@ -1,0 +1,33 @@
+
+
+.App {
+    padding:15px;
+    margin:20px;
+    background-color:lightyellow;
+    border:1px solid lightsalmon;
+}
+
+.card {
+    padding:5px;
+    border:1px solid silver;
+    display:flex;
+    margin-top:3px;
+    margin-bottom:2px;
+}
+
+.card img {
+    width:75px;
+    height:75px;
+}
+
+.card-content {
+    margin-left:20px;
+}
+
+.card-content h3 {
+    margin:0px;
+}
+
+.card-content a {
+    font-size:10px;
+}
