@@ -43,14 +43,24 @@ class App extends React.Component {
    Instead we can use the class field as a short cut...
    */
   state = {
-    profiles: data
+    profiles:[] 
+  }
+
+  addNewProfile = (profile) => {
+    console.log(profile);
+    this.setState(previousState => ({ profiles: [...previousState.profiles, profile] }));
+  }
+
+  clearProfiles = () => {
+    console.log("Resetting Form");
+    this.setState({ profiles: []})
   }
 
   render() {
     return (
       <div className="App" >
         <h1>Github Profiles</h1>
-        <Form />
+        <Form onSubmitHandler={this.addNewProfile} onResetHandler={this.clearProfiles}/>
         <CardList profiles={this.state.profiles} />
       </div>
     );
@@ -87,12 +97,15 @@ class Form extends React.Component {
     event.preventDefault();
     const response = await axios.get(`https://api.github.com/users/${this.state.userName}`);
     console.log(response.data);
+    this.props.onSubmitHandler(response.data);
+    this.setState({ userName : ''});
   }
 
   resetHandler = (event) => {
     console.log("Resetting...");
     //this.state.userName = 'test';
-    this.setState({ userName: ""});
+    this.setState({ userName: "" });
+    this.props.onResetHandler();
   }
 
   render() {
