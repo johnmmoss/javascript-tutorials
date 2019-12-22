@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 const data = [
   {
@@ -42,12 +43,14 @@ class App extends React.Component {
    Instead we can use the class field as a short cut...
    */
   state = {
-    profiles:data
+    profiles: data
   }
 
   render() {
     return (
-      <div class="App" >
+      <div className="App" >
+        <h1>Github Profiles</h1>
+        <Form />
         <CardList profiles={this.state.profiles} />
       </div>
     );
@@ -64,13 +67,49 @@ class Card extends React.Component {
   render() {
     const profile = this.props;
     return (
-      <div class="card">
+      <div className="card">
         <img src={profile.avatar_url} />
-        <div class="card-content" >
+        <div className="card-content" >
           <h3>{profile.login}</h3>
           <p>{profile.location}, {profile.email}</p>
           <a href={profile.blog}>{profile.blog}</a>
         </div>
+      </div>
+    );
+  }
+}
+
+class Form extends React.Component {
+
+  state = { userName: '' }
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await axios.get(`https://api.github.com/users/${this.state.userName}`);
+    console.log(response.data);
+  }
+
+  resetHandler = (event) => {
+    console.log("Resetting...");
+    //this.state.userName = 'test';
+    this.setState({ userName: ""});
+  }
+
+  render() {
+    return (
+      <div className="form">
+        <form onSubmit={this.handleSubmit}>
+          Username: &nbsp;
+        <input
+            type="text"
+            value={this.state.userName}
+            onChange={event => this.setState({ userName: event.target.value })}
+            placeholder="username"
+            required
+          />
+          <input type="submit" value="Add"></input>
+          <input type="button" value="Reset" onClick={this.resetHandler}></input>
+        </form>
       </div>
     );
   }
