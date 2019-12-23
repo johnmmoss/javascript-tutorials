@@ -2,6 +2,14 @@ import React from 'react';
 import './App.css';
 import utils from './util.js'
 
+// Color Theme
+const colors = {
+  available: 'lightgray',
+  used: 'lightgreen',
+  wrong: 'lightcoral',
+  candidate: 'deepskyblue',
+};
+
 function App() {
   return (
     <div className="game">
