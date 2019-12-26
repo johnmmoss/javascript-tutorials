@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react'
 import './App.css';
 import utils from './util.js'
 
@@ -11,6 +12,25 @@ const colors = {
 };
 
 function App() {
+
+  const [stars, setState] = useState(utils.random(1, 9));
+  const [availableNums, setAvailableNums] = useState([1, 2, 3, 5, 6]);
+  const [candidateNums, setCandidateNums] = useState([2, 3]);
+
+  const candidatesAreWrong = utils.sum(candidateNums) > stars;
+
+  const numberStatus = (number) => {
+
+    if (!availableNums.includes(number)) {
+      return 'used';
+    }
+
+    if (candidateNums.includes(number)) {
+      return candidatesAreWrong ? 'wrong' : 'candidate';
+    }
+    return 'available';
+  }
+
   return (
     <div className="game">
       <div className="help">
@@ -18,31 +38,40 @@ function App() {
       </div>
       <div className="body">
         <div className="left">
-          <div className="star" />
-          <div className="star" />
-          <div className="star" />
-          <div className="star" />
-          <div className="star" />
-          <div className="star" />
-          <div className="star" />
-          <div className="star" />
-          <div className="star" />
+          <StarsDisplay count={stars} />
         </div>
         <div className="right">
-          <button className="number">1</button>
-          <button className="number">2</button>
-          <button className="number">3</button>
-          <button className="number">4</button>
-          <button className="number">5</button>
-          <button className="number">6</button>
-          <button className="number">7</button>
-          <button className="number">8</button>
-          <button className="number">9</button>
+          {
+            utils.range(1, 9).map(x =>
+              <PlayNumber
+                key={x}
+                number={x}
+                status={numberStatus(x)} />
+            )}
         </div>
       </div>
       <div className="timer">Time Remaining: 10</div>
     </div>
   );
 }
+
+const StarsDisplay = props => (
+  <>
+    {
+      utils.range(1, props.count).map(x =>
+        <div key={x} className="star" />
+      )}
+  </>
+);
+
+const PlayNumber = props => (
+  <button
+    key={props.number}
+    className='number'
+    style={{backgroundColor: colors[props.status] }}
+  >
+    {props.number}
+  </button>
+)
 
 export default App;
