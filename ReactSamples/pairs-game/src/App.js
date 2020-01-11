@@ -32,7 +32,7 @@ function App() {
         </div>
         <div className="timer">Time Remaining: 0</div>
         <div className="game-done">
-          <div className="message" style={{color:'green'}} >
+          <div className="message" style={{ color: 'green' }} >
             Nice - you won :)
           </div>
           <button onClick={() => alert('TODO:- Implement game restart')}>Play Again</button>
@@ -42,8 +42,24 @@ function App() {
   );
 }
 
-const PairNumber = (props) => (
+const PairNumber = (props) => {
 
-  <button className="number">{props.number}</button>
-)
+  const [number, setNumber] = useState(props.number);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisible = () => {
+
+    setIsVisible(!isVisible);
+  }
+
+  return (
+    <button className="number" onClick={toggleVisible}>
+      {
+        isVisible ?
+          props.number :
+          "x"
+      }
+    </button>
+  )
+}
 export default App;
