@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import _ from 'underscore'
 
 function App() {
+
+  const [availableNumbers, setAvailableNumbers] = useState(_.range(1, 9));
+  const [gameNumbers, setGameNumbers] = useState(_.shuffle(availableNumbers.concat(availableNumbers)));
+  const shuffleNumbers = () => {
+    console.log("Shuffling numbers");
+    setGameNumbers(_.shuffle(availableNumbers.concat(availableNumbers)));
+    console.log(gameNumbers);
+  }
+
   return (
     <>
       <div className="game">
@@ -11,23 +21,14 @@ function App() {
         </div>
         <div className="body">
           <div className="main">
-            <button className="number">1</button>
-            <button className="number">2</button>
-            <button className="number">2</button>
-            <button className="number">1</button>
-            <button className="number">4</button>
-            <button className="number">7</button>
-            <button className="number">6</button>
-            <button className="number">5</button>
-            <button className="number">8</button>
-            <button className="number">3</button>
-            <button className="number">6</button>
-            <button className="number">4</button>
-            <button className="number">8</button>
-            <button className="number">3</button>
-            <button className="number">5</button>
-            <button className="number">7</button>
+            {console.log("Rendering...")}
+            {
+              gameNumbers.map(x => <PairNumber number={x}></PairNumber>)
+            }
           </div>
+        </div>
+        <div>
+          <button onClick={shuffleNumbers} >Restart Game</button>
         </div>
         <div className="timer">Time Remaining: 0</div>
         <div className="game-done">
@@ -41,4 +42,8 @@ function App() {
   );
 }
 
+const PairNumber = (props) => (
+
+  <button className="number">{props.number}</button>
+)
 export default App;
