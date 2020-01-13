@@ -4,8 +4,15 @@ import _ from 'underscore'
 
 function App() {
 
+  const numberOfPairs = 9;
+  // 1. Have a message (image?) display showing the results of two clicks
+  // 3. Need to restart the game
+  // 4. Make it so the player can select the size of the grid
+  // 5. Can click green buttons - disable the click if is green 
+  // BUG Double click a number and it matchs the other
+
   const generateGameNumbers = () => {
-    return _.shuffle((_.range(1, 9).concat(_.range(1, 9))));
+    return _.shuffle((_.range(1, numberOfPairs).concat(_.range(1, numberOfPairs))));
   }
   const [gameNumbers, setGameNumbers] = useState(generateGameNumbers);
   const [matchedNumbers, setMatchedNumbers] = useState([]);
@@ -13,48 +20,47 @@ function App() {
   const [candidateNumber2Index, setCandidateNumber2Index] = useState(-1);
 
   const numberStatus = (index, number) => {
-    
+
     if (matchedNumbers.includes(number)) {
       return 'matched';
     } else if (candidateNumber1Index === index ||
-               candidateNumber2Index === index) {
+      candidateNumber2Index === index) {
       return 'candidate';
     }
     return 'hidden';
   }
 
-  const manageGame = (index, number) => {
+  const manageGame = (currentIndex) => {
 
+    // Click 1... selects the first candidate
     if (candidateNumber1Index < 0) {
-      setCandidateNumber1Index(index);
-      console.log("New Candidate 1");
+      setCandidateNumber1Index(currentIndex);
       return;
-    } 
-    
-    if (candidateNumber2Index < 0) {
-      setCandidateNumber2Index(index);
-      console.log("New Candidate 2");
-      return;
-    } 
-
-    // Otherwise, we have selected two numbers!
-    if (gameNumbers[candidateNumber1Index] === gameNumbers[candidateNumber2Index])  {
-
-      // we have a match
-      setMatchedNumbers([...matchedNumbers, gameNumbers[candidateNumber2Index]]);
-      setCandidateNumber1Index(index);
-      setCandidateNumber2Index(-1);
-      console.log("MATCH");
-      console.log("Next click index:" + index);
-    } else {
-      setCandidateNumber1Index(index);
-      setCandidateNumber2Index(-1);
-      console.log("No Match - Reset");
     }
 
-    // When only two remaining we reduce.
+    // Click 2... selects the second candidate
+    if (candidateNumber2Index < 0 && isLastPair()) {
+      setMatchedNumbers([...matchedNumbers, gameNumbers[currentIndex]]);
+      setCandidateNumber1Index(-1);
+      setCandidateNumber2Index(-1);
+      return;
+    }
+    if (candidateNumber2Index < 0) {
+      setCandidateNumber2Index(currentIndex);
+      return;
+    }
+
+    // Click 3... check if the last two clicks matched
+    if (gameNumbers[candidateNumber1Index] === gameNumbers[candidateNumber2Index]) {
+      setMatchedNumbers([...matchedNumbers, gameNumbers[candidateNumber2Index]]);
+    }
+    setCandidateNumber1Index(currentIndex);
+    setCandidateNumber2Index(-1);
   }
 
+  const isLastPair = () => {
+    return (matchedNumbers.length === numberOfPairs - 2);
+  }
   return (
     <>
       <div className="game">
@@ -64,7 +70,6 @@ function App() {
         </div>
         <div className="body">
           <div className="main">
-            {console.log("Rendering...")}
             {
               gameNumbers
                 .map((number, index) =>
