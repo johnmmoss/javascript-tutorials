@@ -12,9 +12,12 @@ code {
     monospace;
 }
 
+h1 { padding-left:20px;}
 .game {
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
+  border: thin solid #ddd;
+  margin-top:20px;
 }
 
 .body {
@@ -23,15 +26,20 @@ code {
 
 .help {
   color: #666;
-  margin: 10px;
+  margin: 30px ;
   text-align: center;
 }
 
 .main {
-  margin-left:150px;
   text-align: center;
-  width: 300px;
-  border: thin solid #ddd;
+  width: 50%;
+  border: thin solid #ddd
+}
+
+.main-help {
+  width:50%;
+  text-align: center;
+  border: thin solid #ddd
 }
 
 .number {

@@ -5,11 +5,13 @@ import _ from 'underscore'
 function App() {
 
   const numberOfPairs = 9;
-  // 1. Have a message (image?) display showing the results of two clicks
-  // 3. Need to restart the game
-  // 4. Make it so the player can select the size of the grid
-  // 5. Can click green buttons - disable the click if is green 
+
+  // Make it so the player can select the size of the grid
+  // BUG Can click green buttons - disable the click if is green 
   // BUG Double click a number and it matchs the other
+  // Status's aren't really modelled very well in PlayNumber
+  // Add a red/green highlight when candidates are matched
+  // Add a game history so all the attempts appear down a list
 
   const generateGameNumbers = () => {
     return _.shuffle((_.range(1, numberOfPairs).concat(_.range(1, numberOfPairs))));
@@ -18,6 +20,7 @@ function App() {
   const [matchedNumbers, setMatchedNumbers] = useState([]);
   const [candidateNumber1Index, setCandidateNumber1Index] = useState(-1);
   const [candidateNumber2Index, setCandidateNumber2Index] = useState(-1);
+  const [gameHelp, setGameHelp] = useState('Click a square to get started...');
 
   const numberStatus = (index, number) => {
 
@@ -35,6 +38,7 @@ function App() {
     // Click 1... selects the first candidate
     if (candidateNumber1Index < 0) {
       setCandidateNumber1Index(currentIndex);
+      setGameHelp('Great, now pick another number...');
       return;
     }
 
@@ -43,10 +47,16 @@ function App() {
       setMatchedNumbers([...matchedNumbers, gameNumbers[currentIndex]]);
       setCandidateNumber1Index(-1);
       setCandidateNumber2Index(-1);
+      setGameHelp('Your a WINNER!!!')
       return;
     }
     if (candidateNumber2Index < 0) {
       setCandidateNumber2Index(currentIndex);
+      if (gameNumbers[candidateNumber1Index] === gameNumbers[currentIndex]) {
+        setGameHelp('YES, You found a pair!')
+      } else {
+        setGameHelp('Nooo... click another square to try again!')
+      }
       return;
     }
 
@@ -54,8 +64,17 @@ function App() {
     if (gameNumbers[candidateNumber1Index] === gameNumbers[candidateNumber2Index]) {
       setMatchedNumbers([...matchedNumbers, gameNumbers[candidateNumber2Index]]);
     }
+    setGameHelp('Click another square to match a pair');
     setCandidateNumber1Index(currentIndex);
     setCandidateNumber2Index(-1);
+  }
+
+  const restartGame = () => {
+    setMatchedNumbers([]);
+    setCandidateNumber1Index(-1);
+    setCandidateNumber2Index(-1);
+    setGameNumbers(generateGameNumbers);
+    setGameHelp('Click a square to get started...');
   }
 
   const isLastPair = () => {
@@ -66,7 +85,7 @@ function App() {
       <div className="game">
         <h1>Pairs Game</h1>
         <div className="help">
-          Pick 1 or more numbers that sum to the number of stars
+          Match each of the pairs of the number in the grid.
         </div>
         <div className="body">
           <div className="main">
@@ -83,16 +102,14 @@ function App() {
                 )
             }
           </div>
-        </div>
-        <div>
-          <button >Restart Game</button>
-        </div>
-        <div className="timer">Time Remaining: 0</div>
-        <div className="game-done">
-          <div className="message" style={{ color: 'green' }} >
-            Nice - you won :)
+          <div className="main-help">
+            <h4>{gameHelp}</h4>
+            {
+              matchedNumbers.length == numberOfPairs - 1 ?
+              <button onClick={restartGame}>Restart Game</button> :
+              null
+            }
           </div>
-          <button onClick={() => alert('TODO:- Implement game restart')}>Play Again</button>
         </div>
       </div>
     </>
@@ -105,7 +122,7 @@ const PairNumber = (props) => {
     if (props.status === 'matched') {
       return { backgroundColor: '#80ff80' };
     } else if (props.status === 'candidate') {
-      return { backgroundColor: 'blue' };
+      return { backgroundColor: '#00BFFF' };
     }
     return null;
   }
