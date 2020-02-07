@@ -11,29 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-input, button {
-  margin-right:10px;
-  margin-left:8px;
-  padding-top:10px;
-  padding-bottom:10px;
-  border-radius: 3px;
-}
-
-.form, .form-row {
-  padding-top:10px;
-  padding-bottom:10px;
-}
-.App {
-  text-align: center;
-}
-
-.github-select {
-  background-color:olive;
-}
-
-.repo-search, github-select {
-
-  padding-top:5px;
-  padding-bottom:5px;
-}
