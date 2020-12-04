@@ -22,7 +22,10 @@ Then you can run the tests by calling:
 ```
 mocha <path-to-test>
 ```
-
+For example to run the string padder tests run from the StringPadder directory:
+```
+mocha tests\test.js
+```
 ### Chai
 
 Chai is the assertion library. This is actually installed into the local project. For more info about various assertions see the cheat sheat below.
