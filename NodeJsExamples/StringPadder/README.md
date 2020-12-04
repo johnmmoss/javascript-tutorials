@@ -1,7 +1,29 @@
 
-## Example JavaScript Unit Test
+# StringPadder Function
 
-To create a javascript app with tests, you use the test framework mocha with chai. Start off by creating a simple node application using:
+StringPadder is a practice of unit testing using Mocha, Jasmine and Chai. To run the unit tests cd to the project directory and:
+
+```
+npm install
+mocha tests\test.js
+```
+
+usepad.js is a console app using the function which can be demonstrated like so:
+
+```
+node usepad.js
+```
+
+Use pad pads the number 22 with 30 zeros.
+
+## Creating the unit tests
+
+Following along these tutorials:
+
+* [Unit Test Tutoiral](https://blog.logrocket.com/a-quick-and-complete-guide-to-mocha-testing-d0e0ea09f09d/)
+* [Chai Cheatsheat](https://devhints.io/chai)
+
+Start by creating a javascript app with tests, you use the test framework mocha with chai. Start off by creating a simple node application:
 
 ```
 mkdir TestProject1
