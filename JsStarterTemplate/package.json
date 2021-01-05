@@ -9,7 +9,7 @@
   "author": "Cory House",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "fuse": "^0.4.0",
     "vue": "^2.5.17",
     "whatwg-fetch": "1.0.0"
