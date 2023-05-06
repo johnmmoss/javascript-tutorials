@@ -18,10 +18,7 @@ let sport = {
 }
 
 console.log(me.name);
-
 console.log(me.hobbies[2]);
-
-
 console.log(Object.keys(me));
 
 // Object.assign function that copies all properties from one object into another:
