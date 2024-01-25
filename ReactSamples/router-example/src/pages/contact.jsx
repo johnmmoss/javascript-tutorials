@@ -1,5 +1,11 @@
+import { Link,useParams } from "react-router-dom";
+
 const Contact = () => {
-      return <h1>Contact Me</h1>;
-    };
+      const rootParams = useParams();
+      return <>
+            <h1>Hello {rootParams.id}</h1>
+            &nbsp; <Link to="/contact"> back</Link>
+      </>
+};
     
 export default Contact;
