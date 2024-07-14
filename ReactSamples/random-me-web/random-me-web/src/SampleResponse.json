@@ -1,0 +1,66 @@
+{
+      "results": [
+            {
+                  "gender": "male",
+                  "name": {
+                        "title": "Mr",
+                        "first": "Miloduh",
+                        "last": "Boyko"
+                  },
+                  "location": {
+                        "street": {
+                              "number": 9574,
+                              "name": "Berezhanska"
+                        },
+                        "city": "Pervomayskiy",
+                        "state": "Luganska",
+                        "country": "Ukraine",
+                        "postcode": 86982,
+                        "coordinates": {
+                              "latitude": "76.6781",
+                              "longitude": "-49.6811"
+                        },
+                        "timezone": {
+                              "offset": "+3:30",
+                              "description": "Tehran"
+                        }
+                  },
+                  "email": "miloduh.boyko@example.com",
+                  "login": {
+                        "uuid": "919f0a7d-7476-46cd-b281-927428ada752",
+                        "username": "lazybird648",
+                        "password": "bigmike",
+                        "salt": "EsExAYYR",
+                        "md5": "d2018062121e8859a7cfdfa0bb4bc119",
+                        "sha1": "4e04334cb66ed4f3cf871e212760895df7114e95",
+                        "sha256": "d295c3de38671d8084e43c5b8cd5da9b71628900b095ed78a4b76b267ce371f6"
+                  },
+                  "dob": {
+                        "date": "1952-08-24T11:49:37.039Z",
+                        "age": 70
+                  },
+                  "registered": {
+                        "date": "2011-03-11T04:10:11.219Z",
+                        "age": 12
+                  },
+                  "phone": "(067) N68-6431",
+                  "cell": "(066) V16-1967",
+                  "id": {
+                        "name": "",
+                        "value": null
+                  },
+                  "picture": {
+                        "large": "https://randomuser.me/api/portraits/men/25.jpg",
+                        "medium": "https://randomuser.me/api/portraits/med/men/25.jpg",
+                        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/25.jpg"
+                  },
+                  "nat": "UA"
+            }
+      ],
+      "info": {
+            "seed": "f797e5b0853b67b7",
+            "results": 1,
+            "page": 1,
+            "version": "1.4"
+      }
+}
